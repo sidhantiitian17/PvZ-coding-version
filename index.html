@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants vs Zombies - Web Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=11">
+    <link rel="stylesheet" href="css/game.css?v=11">
+    <link rel="stylesheet" href="css/editor.css?v=11">
+</head>
+<body>
+    <div id="app">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="main-menu-bg">
+                <!-- Sunburst background -->
+                <div class="sunburst"></div>
+                
+                <!-- Logo area with characters -->
+                <div class="logo-area">
+                    <img src="assets/images/home%20page.gif" alt="Plants vs Zombies" class="main-logo">
+                </div>
+                
+                <!-- Almanac button in top right -->
+                <button class="almanac-icon-btn" id="almanac-btn" title="Almanac">
+                    <img src="assets/images/Almanac_ion.png" alt="Almanac">
+                </button>
+                
+                <!-- Grass decoration at bottom -->
+                <div class="grass-bottom"></div>
+                
+                <!-- Menu buttons -->
+                <div class="classic-menu-buttons">
+                    <button class="classic-btn" id="new-game-btn">
+                        <span>Start Game</span>
+                    </button>
+                    <button class="classic-btn" id="load-game-btn">
+                        <span>Load Game</span>
+                    </button>
+                    <button class="classic-btn" id="challenges-btn">
+                        <span>Select Level</span>
+                    </button>
+                    <button class="classic-btn" id="tutorial-btn">
+                        <span>How to Play</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tutorial Screen -->
+        <div id="tutorial-screen" class="screen">
+            <div class="tutorial-container">
+                <h2>📖 How to Play</h2>
+                <div class="tutorial-content">
+                    <div class="tutorial-section">
+                        <h3>🎮 Game Basics</h3>
+                        <ul>
+                            <li><strong>Goal:</strong> Stop zombies from reaching your house (left side)</li>
+                            <li><strong>Sun ☀️:</strong> Collect falling suns and sunflower suns to buy plants</li>
+                            <li><strong>Plant:</strong> Click a plant card, then click a grid tile to place it</li>
+                            <li><strong>Shovel:</strong> Use shovel to remove unwanted plants</li>
+                            <li><strong>Lawn Mowers:</strong> One-time defense - destroys all zombies in a row</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tutorial-section">
+                        <h3>🌱 Plants Guide</h3>
+                        <ul>
+                            <li><strong>Sunflower (50☀️):</strong> Produces extra suns - plant these first!</li>
+                            <li><strong>Peashooter (100☀️):</strong> Shoots peas at zombies</li>
+                            <li><strong>Repeater (200☀️):</strong> Shoots two peas - double damage!</li>
+                            <li><strong>Wall-nut (50☀️):</strong> High health wall to block zombies</li>
+                            <li><strong>Cherry Bomb (150☀️):</strong> Explodes and kills nearby zombies</li>
+                            <li><strong>Jalapeno (125☀️):</strong> Burns all zombies in an entire row</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tutorial-section">
+                        <h3>💻 Coding Challenge System</h3>
+                        <p>Each zombie has a 💻 icon. Click it to open a coding challenge!</p>
+                        <ul>
+                            <li><strong>Solve the challenge</strong> to instantly kill that zombie</li>
+                            <li><strong>Game keeps running</strong> - solve fast before zombie reaches your plants!</li>
+                            <li><strong>Languages:</strong> Choose JavaScript or Python from the dropdown</li>
+                            <li><strong>Test your code</strong> before submitting to check if it works</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tutorial-section">
+                        <h3>📝 Example Code Solutions</h3>
+                        <div class="code-examples">
+                            <div class="code-example">
+                                <p><strong>Add Two Numbers:</strong></p>
+                                <pre>function solve(a, b) {
+  return a + b;
+}</pre>
+                            </div>
+                            <div class="code-example">
+                                <p><strong>Is Even:</strong></p>
+                                <pre>function solve(n) {
+  return n % 2 === 0;
+}</pre>
+                            </div>
+                            <div class="code-example">
+                                <p><strong>Reverse String:</strong></p>
+                                <pre>function solve(str) {
+  return str.split('').reverse().join('');
+}</pre>
+                            </div>
+                            <div class="code-example">
+                                <p><strong>Sum Array:</strong></p>
+                                <pre>function solve(arr) {
+  return arr.reduce((a, b) => a + b, 0);
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-section">
+                        <h3>⌨️ Keyboard Shortcuts</h3>
+                        <ul>
+                            <li><strong>1-6:</strong> Select plants quickly</li>
+                            <li><strong>S:</strong> Select shovel</li>
+                            <li><strong>P:</strong> Pause/Resume game</li>
+                            <li><strong>ESC:</strong> Deselect current tool</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tutorial-section tips">
+                        <h3>💡 Pro Tips</h3>
+                        <ul>
+                            <li>Build 2 columns of sunflowers early for maximum sun production</li>
+                            <li>Easy challenges give easier problems - click normal zombies first!</li>
+                            <li>Higher levels have tougher zombies with harder coding challenges</li>
+                            <li>Use Wall-nuts to buy time while solving coding challenges</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="back-btn" id="tutorial-back-btn">Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- Level Select Screen -->
+        <div id="level-select" class="screen">
+            <!-- Decorative Plants - Using actual game images -->
+            <div class="level-decor plant-left-1">
+                <img src="assets/images/sunflower.gif" alt="Sunflower">
+            </div>
+            <div class="level-decor plant-left-2">
+                <img src="assets/images/peashooter.gif" alt="Peashooter">
+            </div>
+            <div class="level-decor plant-right-1">
+                <img src="assets/images/walnut_full_life.gif" alt="Wallnut">
+            </div>
+            <div class="level-decor plant-right-2">
+                <img src="assets/images/walnut_full_life.gif" alt="Wallnut">
+            </div>
+            
+            <!-- Decorative Zombies - Using actual game images -->
+            <div class="level-decor zombie-left">
+                <img src="assets/images/bucketheadzombie.gif" alt="Bucket Zombie">
+            </div>
+            <div class="level-decor zombie-right-1">
+                <img src="assets/images/coneheadzombie.gif" alt="Cone Zombie">
+            </div>
+            <div class="level-decor zombie-right-2">
+                <img src="assets/images/normalzombie.gif" alt="Normal Zombie">
+            </div>
+            
+            <!-- Main Wooden Board -->
+            <div class="level-board">
+                <h2 class="level-title">Select Level</h2>
+                
+                <div class="level-buttons">
+                    <button class="level-btn" data-level="1"></button>
+                    <button class="level-btn" data-level="2"></button>
+                    <button class="level-btn" data-level="3"></button>
+                    <button class="level-btn" data-level="4"></button>
+                    <button class="level-btn" data-level="5"></button>
+                    <button class="level-btn" data-level="6"></button>
+                    <button class="level-btn" data-level="7"></button>
+                    <button class="level-btn" data-level="8"></button>
+                    <button class="level-btn" data-level="9"></button>
+                    <button class="level-btn" data-level="10"></button>
+                </div>
+                
+                <!-- Back button -->
+                <div class="back-btn-container">
+                    <button class="back-btn-wood" id="level-back-btn">Back</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="sun-counter">
+                    <img src="assets/images/sun.png" alt="Sun" class="sun-icon">
+                    <span id="sun-count">50</span>
+                </div>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+                <button class="menu-toggle-btn" id="game-menu-btn">Menu</button>
+            </div>
+
+            <div class="game-main">
+                <!-- Plant Selector Sidebar -->
+                <div class="plant-selector">
+                    <div class="plant-card" data-plant="sunflower" data-cost="50">
+                        <img src="assets/images/sunflower.png" alt="Sunflower">
+                        <span class="cost">50</span>
+                    </div>
+                    <div class="plant-card" data-plant="peashooter" data-cost="100">
+                        <img src="assets/images/peashooter.gif" alt="Peashooter">
+                        <span class="cost">100</span>
+                    </div>
+                    <div class="plant-card" data-plant="repeater" data-cost="200">
+                        <img src="assets/images/repeater.gif" alt="Repeater">
+                        <span class="cost">200</span>
+                    </div>
+                    <div class="plant-card" data-plant="wallnut" data-cost="50">
+                        <img src="assets/images/wallnut.png" alt="Wallnut">
+                        <span class="cost">50</span>
+                    </div>
+                    <div class="plant-card" data-plant="cherrybomb" data-cost="150">
+                        <img src="assets/images/cherrybomb.png" alt="Cherry Bomb">
+                        <span class="cost">150</span>
+                    </div>
+                    <div class="plant-card" data-plant="jalapeno" data-cost="125">
+                        <img src="assets/images/jalapeno.png" alt="Jalapeno">
+                        <span class="cost">125</span>
+                    </div>
+                    <div class="plant-card shovel-card" id="shovel-tool">
+                        <img src="assets/images/shovel.png" alt="Shovel">
+                    </div>
+                </div>
+
+                <!-- Game Board -->
+                <div id="lawn" class="lawn">
+                    <canvas id="game-canvas"></canvas>
+                    <div id="lawn-grid" class="lawn-grid"></div>
+                </div>
+                
+                <!-- Coding Palette -->
+                <div id="coding-palette" class="coding-palette">
+                    <div class="palette-header">
+                        <span class="palette-title">🎮 Code Mode</span>
+                        <div class="palette-controls">
+                            <div class="language-selector">
+                                <select id="language-select" title="Select Language">
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="java">Java</option>
+                                    <option value="csharp">C#</option>
+                                    <option value="cpp">C++</option>
+                                    <option value="ruby">Ruby</option>
+                                    <option value="go">Go</option>
+                                    <option value="rust">Rust</option>
+                                    <option value="typescript">TypeScript</option>
+                                    <option value="php">PHP</option>
+                                </select>
+                            </div>
+                            <button id="toggle-coding-mode" class="palette-btn" title="Toggle Coding Mode">
+                                <span id="coding-mode-status">OFF</span>
+                            </button>
+                            <button id="minimize-palette" class="palette-btn" title="Minimize">−</button>
+                        </div>
+                    </div>
+                    <div class="palette-body">
+                        <!-- Zombie Challenge Panel (embedded in side panel) -->
+                        <div id="zombie-challenge-panel" class="zombie-challenge-panel hidden">
+                            <div class="challenge-panel-header">
+                                <h4 id="panel-challenge-title">🧟 Challenge</h4>
+                                <span class="challenge-difficulty" id="panel-difficulty">Easy</span>
+                            </div>
+                            <p id="panel-challenge-description" class="challenge-desc-small"></p>
+                            <div class="challenge-code-area-small">
+                                <textarea id="panel-code-editor" class="panel-code-editor" spellcheck="false"></textarea>
+                            </div>
+                            <div class="challenge-actions-small">
+                                <button id="panel-run-code" class="panel-btn run">▶ Test</button>
+                                <button id="panel-submit-code" class="panel-btn submit">✓ Kill</button>
+                                <button id="panel-close" class="panel-btn close">×</button>
+                            </div>
+                            <div class="challenge-output-small">
+                                <pre id="panel-output">Click a zombie's 💻 to start!</pre>
+                            </div>
+                        </div>
+                        
+                        <div class="code-hint-box">
+                            <p>💡 <strong>Click the 💻 icon</strong> on any zombie to solve a coding challenge and instantly kill it!</p>
+                        </div>
+                        <div class="code-editor-compact">
+                            <textarea id="player-code" class="player-code-input" placeholder="// Advanced: Write game control code
+// API: selectZombie(row, index), attackZombie()
+// switchRow('up'/'down'), getZombieSpeed()
+// Use TAB to cycle zombies, ↑↓ to switch rows"></textarea>
+                        </div>
+                        <div class="palette-actions">
+                            <button id="run-player-code" class="palette-action-btn run-btn">▶ Run</button>
+                            <button id="pause-player-code" class="palette-action-btn pause-btn" disabled>⏸ Pause</button>
+                            <button id="clear-player-code" class="palette-action-btn">🗑 Clear</button>
+                        </div>
+                        <div class="code-status">
+                            <div class="status-indicator">
+                                <span class="status-dot"></span>
+                                <span id="code-status-text">Ready</span>
+                            </div>
+                            <div class="selected-zombie-info" id="selected-zombie-info">
+                                <span>No zombie selected</span>
+                            </div>
+                        </div>
+                        <div class="code-hints" id="code-hints">
+                            <div class="hint-text">💡 Press TAB to cycle zombies, ↑↓ to switch rows</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Challenge Screen -->
+        <div id="challenge-screen" class="screen">
+            <div class="challenge-container">
+                <div class="challenge-header">
+                    <h2>Code Challenges</h2>
+                    <button class="back-btn" id="challenge-back-btn">Back</button>
+                </div>
+                
+                <div class="challenge-content">
+                    <div class="challenge-list">
+                        <h3>Available Challenges</h3>
+                        <div id="challenge-list-items">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-detail" id="challenge-detail">
+                        <h3 id="challenge-title">Select a challenge</h3>
+                        <div id="challenge-description" class="challenge-description"></div>
+                        
+                        <div class="editor-container">
+                            <div id="code-editor" class="code-editor"></div>
+                        </div>
+                        
+                        <div class="challenge-actions">
+                            <button id="run-code-btn" class="action-btn">Run Code</button>
+                            <button id="submit-code-btn" class="action-btn">Submit</button>
+                            <button id="reset-code-btn" class="action-btn secondary">Reset</button>
+                        </div>
+                        
+                        <div id="challenge-output" class="challenge-output">
+                            <h4>Output:</h4>
+                            <pre id="output-content"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load Game Screen -->
+        <div id="load-game-screen" class="screen">
+            <div class="load-game-container">
+                <h2>Load Game</h2>
+                <div id="saved-games-list" class="saved-games-list">
+                    <!-- Populated dynamically -->
+                </div>
+                <button class="back-btn" id="load-back-btn">Back</button>
+            </div>
+        </div>
+
+        <!-- Almanac Screen -->
+        <div id="almanac-screen" class="screen">
+            <div class="almanac-wrapper">
+                <div class="almanac-header">
+                    <h2>Almanac</h2>
+                    <button class="almanac-back-btn" id="almanac-back-btn">
+                        <span>&#x2190;</span>
+                    </button>
+                </div>
+                <div class="almanac-body">
+                    <div class="almanac-grid-section">
+                        <!-- Zombies Row -->
+                        <div class="almanac-section-title">Zombies</div>
+                        <div id="almanac-zombies" class="almanac-grid">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <!-- Plants Row -->
+                        <div class="almanac-section-title">Plants</div>
+                        <div id="almanac-plants" class="almanac-grid">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                    <div class="almanac-detail-panel" id="almanac-detail">
+                        <div class="detail-frame">
+                            <img id="detail-image" src="" alt="">
+                        </div>
+                        <h3 id="detail-name">Select an item</h3>
+                        <p id="detail-description">Click on a plant or zombie to see details.</p>
+                        <div id="detail-stats" class="detail-stats"></div>
+                        <p id="detail-flavor" class="detail-flavor"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over/Win Screen -->
+        <div id="end-game-screen" class="screen">
+            <div class="end-game-overlay">
+                <!-- Zombie decorations -->
+                <div class="zombie-decoration zombie-left-1">🧟</div>
+                <div class="zombie-decoration zombie-left-2">🧠</div>
+                <div class="zombie-decoration zombie-right-1">🧟‍♂️</div>
+                <div class="zombie-decoration zombie-right-2">🧠</div>
+                <div class="brain-splat brain-1">🧠</div>
+                <div class="brain-splat brain-2">🧠</div>
+                <div class="brain-splat brain-3">🧠</div>
+                
+                <!-- Wooden Sign Board -->
+                <div class="end-game-sign">
+                    <div class="sign-post"></div>
+                    <div class="sign-board">
+                        <div class="blood-drip drip-1"></div>
+                        <div class="blood-drip drip-2"></div>
+                        <div class="blood-drip drip-3"></div>
+                        <h2 id="end-game-title">Game Over</h2>
+                        <p id="end-game-message">The zombies ate your brains!</p>
+                        <div class="end-game-buttons">
+                            <button class="wooden-btn" id="restart-btn">
+                                <span class="btn-text">Restart Level</span>
+                                <span class="btn-slime">💀</span>
+                            </button>
+                            <button class="wooden-btn" id="main-menu-btn">
+                                <span class="btn-text">Main Menu</span>
+                                <span class="btn-slime">💀</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (cache-busted for development) -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+    <script src="js/config.js?v=11"></script>
+    <script src="js/utils.js?v=11"></script>
+    <script src="js/entities/Plant.js?v=11"></script>
+    <script src="js/entities/Zombie.js?v=11"></script>
+    <script src="js/entities/Projectile.js?v=11"></script>
+    <script src="js/entities/Sun.js?v=11"></script>
+    <script src="js/entities/LawnMower.js?v=11"></script>
+    <script src="js/game/Level.js?v=11"></script>
+    <script src="js/game/GameState.js?v=11"></script>
+    <script src="js/game/CodingMode.js?v=11"></script>
+    <script src="js/game/GameEngine.js?v=11"></script>
+    <script src="js/ui/Menu.js?v=11"></script>
+    <script src="js/ui/Editor.js?v=11"></script>
+    <script src="js/challenges/ChallengeSystem.js?v=11"></script>
+    <script src="js/challenges/Sandbox.js?v=11"></script>
+    <script src="js/main.js?v=11"></script>
+</body>
+</html>
